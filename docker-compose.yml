@@ -1,0 +1,27 @@
+version: '3'
+services:
+  nginx:
+    image: zavanton/famount-nginx
+    depends_on:
+      - web
+      - api
+#    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+  web:
+    image: zavanton/famount-web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+  api:
+    image: zavanton/famount-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+networks:
+  default:
+    external:
+      name: localdev
