@@ -10,9 +10,9 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "5000:5000"
-    volumes:
-      - /usr/src/app/node_modules
-      - ./api:/usr/src/app
+#    volumes:
+#      - /usr/src/app/node_modules
+#      - ./api:/usr/src/app
   web:
     build:
       context: ./web
@@ -20,7 +20,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - /usr/src/app/node_modules
+#      - /usr/src/app/node_modules
       - ./web:/usr/src/app
 networks:
   default:

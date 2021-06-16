@@ -1,11 +1,27 @@
-import express from 'express';
-import {db} from "./data/database";
+import express, {NextFunction, Request, Response} from 'express';
 
 const app = express();
 
+// CORS headers
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'OPTIONS, GET, POST, PUT, PATCH, DELETE'
+  );
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 app.get('/api/tags', (req, res, next) => {
+  const tags = [
+    {name: 'Java'},
+    {name: 'Kotlin'},
+    {name: 'Typescript'}
+  ]
+
   return res.json({
-    tags: []
+    tags: tags
   });
 });
 
