@@ -12,7 +12,7 @@ services:
     depends_on:
       - web
       - api
-#    restart: always
+    restart: always
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -28,6 +28,7 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+    command: ./wait-for.sh database:5432 -- node build/app.js
 volumes:
   dbdata:
 networks:

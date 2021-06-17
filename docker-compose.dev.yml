@@ -26,6 +26,7 @@ services:
     volumes:
       #      - /usr/src/app/node_modules
       - ./api:/usr/src/app
+    command: ./wait-for.sh database:5432 -- /usr/src/app/node_modules/.bin/nodemon src/app.ts
   web:
     build:
       context: ./web
