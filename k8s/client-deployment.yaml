@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web-deployment
+  name: client-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       component: web
@@ -13,7 +13,7 @@ spec:
         component: web
     spec:
       containers:
-        - name: web
+        - name: client
           image: zavanton/famount-web
           ports:
             - containerPort: 3000
