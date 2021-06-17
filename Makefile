@@ -9,3 +9,12 @@ up-prod:
 
 down-prod:
 	docker-compose -f docker-compose.yml down
+
+logs-api:
+	docker-compose -f docker-compose.dev.yml logs api
+
+logs-web:
+	docker-compose -f docker-compose.dev.yml logs web
+
+logs-db:
+	docker-compose -f docker-compose.dev.yml logs database

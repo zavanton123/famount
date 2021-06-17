@@ -1,4 +1,5 @@
 import express, {NextFunction, Request, Response} from 'express';
+import {db} from "./data/database";
 
 const app = express();
 
@@ -13,7 +14,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.get('/api/tags', (req, res, next) => {
+app.get('/tags', (req, res, next) => {
+  console.log(`zavanton - gettings tags`);
   const tags = [
     {name: 'Java'},
     {name: 'Kotlin'},
@@ -25,13 +27,13 @@ app.get('/api/tags', (req, res, next) => {
   });
 });
 
-app.listen(5000);
+// app.listen(5000);
 
-// db.sync()
-//   .then(() => {
-//     console.log(`zavanton - connected to DB!`);
-//     app.listen(5000);
-//   })
-//   .catch(err => {
-//     console.log(`zavanton - err: ${err}`);
-//   });
+db.sync()
+  .then(() => {
+    console.log(`zavanton - connected to DB!`);
+    app.listen(5000);
+  })
+  .catch(err => {
+    console.log(`zavanton - err: ${err}`);
+  });
