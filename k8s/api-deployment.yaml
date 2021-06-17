@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      containers:
+        - name: api
+          image: zavanton/famount-api
+          ports:
+            - containerPort: 5000
+          env:
+            - name: DBUSER
+              value: postgres
+            - name: DBHOST
+              value: postgres-cluster-ip-service
+            - name: DBPORT
+              value: '5432'
+            - name: DBNAME
+              value: postgres
+            - name: DBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
