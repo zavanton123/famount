@@ -2,6 +2,9 @@ version: '3'
 services:
   database:
     image: "postgres:latest"
+    restart: always
+    volumes:
+      - dbdata:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: 'postgres_password'
   nginx:
@@ -21,7 +24,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-#      - /usr/src/app/node_modules
+      #      - /usr/src/app/node_modules
       - ./api:/usr/src/app
   web:
     build:
@@ -30,8 +33,10 @@ services:
     ports:
       - "3000:3000"
     volumes:
-#      - /usr/src/app/node_modules
+      #      - /usr/src/app/node_modules
       - ./web:/usr/src/app
+volumes:
+  dbdata:
 networks:
   default:
     external:

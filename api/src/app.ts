@@ -26,11 +26,16 @@ app.get('/tags', async (req, res, next) => {
   });
 });
 
-db.sync()
-  .then(() => {
-    console.log(`zavanton - connected to DB!`);
-    app.listen(5000);
-  })
-  .catch(err => {
-    console.log(`zavanton - err: ${err}`);
-  });
+setTimeout(function() {
+  db.sync()
+    .then(() => {
+      console.log(`zavanton - connected to DB!`);
+      app.listen(5000);
+    })
+    .catch(err => {
+      console.log(`zavanton - err: ${err}`);
+      console.log(`zavanton - ERROR:`);
+      console.log(err);
+      app.listen(5000);
+    });
+}, 5000);

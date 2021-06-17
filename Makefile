@@ -18,3 +18,12 @@ logs-web:
 
 logs-db:
 	docker-compose -f docker-compose.dev.yml logs database
+
+logs-api-prod:
+	docker-compose -f docker-compose.yml logs api
+
+logs-web-prod:
+	docker-compose -f docker-compose.yml logs web
+
+logs-db-prod:
+	docker-compose -f docker-compose.yml logs database

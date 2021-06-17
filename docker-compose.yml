@@ -1,5 +1,12 @@
 version: '3'
 services:
+  database:
+    image: "postgres:latest"
+    restart: always
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: 'postgres_password'
   nginx:
     image: zavanton/famount-nginx
     depends_on:
@@ -21,6 +28,8 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+volumes:
+  dbdata:
 networks:
   default:
     external:
