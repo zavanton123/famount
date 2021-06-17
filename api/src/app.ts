@@ -1,5 +1,6 @@
 import express, {NextFunction, Request, Response} from 'express';
 import {db} from "./data/database";
+import {Tag} from "./models/tags";
 
 const app = express();
 
@@ -14,20 +15,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.get('/tags', (req, res, next) => {
-  console.log(`zavanton - gettings tags`);
-  const tags = [
-    {name: 'Java'},
-    {name: 'Kotlin'},
-    {name: 'Typescript'}
-  ]
+app.get('/tags', async (req, res, next) => {
+  // TODO - zavanton: this is just for mocking
+  const item = await Tag.create({name: "Python"});
+
+  const tags = await Tag.findAll()
 
   return res.json({
     tags: tags
   });
 });
-
-// app.listen(5000);
 
 db.sync()
   .then(() => {
