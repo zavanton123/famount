@@ -1,0 +1,18 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t zavanton/famount-web-test -f ./web/Dockerfile.dev ./web
+
+script:
+  - docker run -e CI=true zavanton/famount-web-test npm run test
+
+after_success:
+  - docker build -t zavanton/famount-web -f ./web/Dockerfile ./web
+  - docker build -t zavanton/famount-api -f ./api/Dockerfile ./api
+  - docker build -t zavanton/famount-nginx -f ./nginx/Dockerfile ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push zavanton/famount-web
+  - docker push zavanton/famount-api
+  - docker push zavanton/famount-nginx
