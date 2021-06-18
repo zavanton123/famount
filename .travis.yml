@@ -19,10 +19,10 @@ before_install:
   - gcloud auth activate-service-account --key-file service-account.json
   # Indicate the k8s project name, zone, cluster
   # (You can find out the project id in Google Cloud Consle top nav bar drop-down menu)
-  - gcloud config set project famount
-  - gcloud config set compute/zone us-central1-c
+  - gcloud config set project famount-demo-2
+  - gcloud config set compute/zone europe-central2-a
   # ('multi-cluster' is some name of your cluster, you can see it in clusters list in Google Cloud Console)
-  - gcloud container clusters get-credentials my-first-cluster-1
+  - gcloud container clusters get-credentials famount-cluster
   # Login to Docker Hub (DOCKER_PASSWORD and DOCKER_USERNAME must be saved as environment variables in travis.com)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # build a docker image for running tests
