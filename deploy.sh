@@ -1,6 +1,6 @@
 # build the prod images
-docker build -t zavanton/famount-web:latest -t zavanton/famount-web:$SHA -f ./client/Dockerfile ./client
-docker build -t zavanton/famount-api:latest -t zavanton/famount-api:$SHA -f ./server/Dockerfile ./server
+docker build -t zavanton/famount-web:latest -t zavanton/famount-web:$SHA -f ./web/Dockerfile ./web
+docker build -t zavanton/famount-api:latest -t zavanton/famount-api:$SHA -f ./api/Dockerfile ./api
 
 # push the prod images to Docker Hub (with the latest tag)
 docker push zavanton/famount-web:latest

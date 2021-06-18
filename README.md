@@ -19,3 +19,15 @@ To stop dev build:
 ```
 make down-dev
 ```
+
+### TODO:
+- change the default db user, password and db name
+- make the correct volume for node_modules
+- add tests to the api module
+- try to remove NODE_PATH from api dockerfile
+
+
+
+
+
+

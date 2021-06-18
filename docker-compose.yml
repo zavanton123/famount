@@ -6,7 +6,7 @@ services:
     volumes:
       - dbdata:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: 'postgres_password'
+      POSTGRES_PASSWORD: ${DBPASSWORD}
   nginx:
     image: zavanton/famount-nginx
     depends_on:
@@ -25,6 +25,8 @@ services:
       dockerfile: Dockerfile
   api:
     image: zavanton/famount-api
+    env_file:
+      - .env
     build:
       context: ./api
       dockerfile: Dockerfile
